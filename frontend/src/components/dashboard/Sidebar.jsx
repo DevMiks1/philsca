@@ -11,7 +11,7 @@ import {
 import {FiMenu , FiMessageSquare } from 'react-icons/fi';
 import { Link } from "react-router-dom";
 
-export const SideBar = ({ userDetails, setTab, tab }) => {
+export const SideBar = ({ setTab, tab }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const sideBarClose = () => {
@@ -24,13 +24,13 @@ export const SideBar = ({ userDetails, setTab, tab }) => {
         <Flex 
           align="center"
           gap={2}
-          backgroundColor={tab === "prelist" ? "blue.500" : ""}
+          backgroundColor={tab === "prelist" ? "gray.600" : ""}
           borderRadius={5}
           px={2}
           py={2}
           mb={2}       
           _hover={{
-            bg : "blue.500",
+            bg : "gray.600",
             borderRadius : "5"
           }}>
             <Icon  as={FaUser}/>
@@ -42,13 +42,13 @@ export const SideBar = ({ userDetails, setTab, tab }) => {
         <Flex 
           align="center" 
           gap={2}
-          backgroundColor={tab === "studlistid" ? "blue.500" : ""}
+          backgroundColor={tab === "studlistid" ? "gray.600" : ""}
           borderRadius={5}
           px={2}
           py={2}
           mb={2}
           _hover={{
-          bg : "blue.500",
+          bg : "gray.600",
           borderRadius : "5"
           }}>
           <Icon as={FaChartBar}/>
@@ -60,13 +60,13 @@ export const SideBar = ({ userDetails, setTab, tab }) => {
         <Flex 
           align="center" 
           gap={2}
-          backgroundColor={tab === "graphsandanalytics" ? "blue.500" : ""}
+          backgroundColor={tab === "graphsandanalytics" ? "gray.600" : ""}
           borderRadius={5}
           px={2}
           py={2}
           mb={2}
           _hover={{
-          bg : "blue.500",
+          bg : "gray.600",
           borderRadius : "5"
           }}>
           <Icon as={FaBox} />
@@ -74,17 +74,35 @@ export const SideBar = ({ userDetails, setTab, tab }) => {
         </Flex>
       </Link>
 
-      <Link onClick={(e) => {setTab("settings") ; ; onClose()}}>
+      <Link onClick={(e) => {setTab("generateaccount") ; ; onClose()}}>
         <Flex 
           align="center" 
           gap={2}
-          backgroundColor={tab === "settings" ? "blue.500" : ""}
+          backgroundColor={tab === "generateaccount" ? "gray.600" : ""}
           borderRadius={5}
           px={2}
           py={2}
           mb={2}
           _hover={{
-          bg : "blue.500",
+          bg : "gray.600",
+          borderRadius : "5"
+          }}>
+          <Icon as={FaBox} />
+          <Text>Generate Account</Text>
+        </Flex>
+      </Link>
+
+      <Link onClick={(e) => {setTab("settings") ; ; onClose()}}>
+        <Flex 
+          align="center" 
+          gap={2}
+          backgroundColor={tab === "settings" ? "gray.600" : ""}
+          borderRadius={5}
+          px={2}
+          py={2}
+          mb={2}
+          _hover={{
+          bg : "gray.600",
           borderRadius : "5"
           }}>
           <Icon as={FaUsers} />
@@ -97,7 +115,7 @@ export const SideBar = ({ userDetails, setTab, tab }) => {
 
   // SIDE BAR
   return (
-    <div className="px-3 sticky top-0 ">
+    <div className="px-3 sticky top-0">
         {/* DRAWER BUTTON */}
         <Box cursor="pointer" display={{ base: 'block', md: 'block', lg: "none" }} onClick={onOpen} mt={5} p={2}>
           <Icon as={FiMenu} boxSize={6} />
@@ -107,7 +125,7 @@ export const SideBar = ({ userDetails, setTab, tab }) => {
         {menu}
       </VStack>
       
-      <Drawer placement="left" onClose={onClose} isOpen={isOpen} >
+      <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay >
           <DrawerContent>
             <DrawerCloseButton color="white"/>

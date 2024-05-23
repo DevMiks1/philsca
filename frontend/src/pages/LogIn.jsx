@@ -18,7 +18,7 @@ import {
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 
-const LogIn = () => {
+const LogIn = ({setIsAuthenticated}) => {
   const navigate = useNavigate();
   const toast = useToast();
   const [intro, setIntro] = useState(
@@ -45,33 +45,7 @@ const LogIn = () => {
     setShowPassword(!showPassword);
   };
 
-  const authenticate = async (userID) => {
-    const body = {
-      token: Math.floor(Math.random() * 1000000000),
-      expiration: Date.now() + 7200000,
-    };
-    localStorage.setItem("//////", body.token);
-    try {
-      let url = `${globalUrl}/useraccounts/update/` + userID;
-      let method = "PATCH";
-
-      const res = await fetch(url, {
-        method,
-        headers: {
-          "Content-Type": "application/json",
-          "x-auth-token": process.env.REACT_APP_X_AUTH_TOKEN,
-        },
-        body: JSON.stringify(body),
-      });
-
-      if (res.ok) {
-      } else {
-        console.log("Error saving data");
-      }
-    } catch (error) {
-      console.log("Error:", error);
-    }
-  };
+  
 
   const signIn = async (e) => {
     setLoading(true);
@@ -84,8 +58,7 @@ const LogIn = () => {
         userToSignIn.role === role.toLocaleLowerCase()
       ) {
         try {
-          await authenticate(userToSignIn._id);
-          localStorage.setItem("user", userToSignIn._id);
+          
           toast({
             title: "Successfully Login",
             status: "success",

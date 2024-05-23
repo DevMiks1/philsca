@@ -6,29 +6,33 @@ import PreList from "./windows/PreList";
 import StudIDList from "./windows/StudIDList";
 import GraphsAndAnalytics from "./windows/GraphsAndAnalytics";
 import Settings from "./windows/Settings";
+import GenerateAccount from "./windows/GenerateAccount";
 // IMPORT COMPONENTS
 ;
 
-export const WindowDisplay = ({ userDetails, tab }) => {
-  const [display, setDisplay] = useState(<PreList userDetails={userDetails}/>);
+export const WindowDisplay = ({ tab }) => {
+  const [display, setDisplay] = useState(<PreList/>);
 
   //   DISPLAY TOGGLE
   useEffect(() => {
     switch (tab) {
       case "prelist":
-        setDisplay(<PreList userDetails={userDetails} />);
+        setDisplay(<PreList />);
         break;
-      case "analytics":
-        setDisplay(<StudIDList userDetails={userDetails} />);
+      case "studlistid":
+        setDisplay(<StudIDList />);
         break;
-      case "inventory":
-        setDisplay(<GraphsAndAnalytics userDetails={userDetails} />);
+        case "generateaccount":
+          setDisplay(<GenerateAccount />);
+          break;  
+      case "graphsandanalytics":
+        setDisplay(<GraphsAndAnalytics />);
         break;
-      case "employee":
-        setDisplay(<Settings userDetails={userDetails} />);
+      case "settings":
+        setDisplay(<Settings />);
         break;
     }
   }, [tab]);
 
-  return <div className="p-5">{display}</div>;
+  return <div className="h-full">{display}</div>;
 };
